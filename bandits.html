@@ -1,0 +1,674 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.2.custom.min.css" />
+        <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> -->
+        <link rel="stylesheet" href="css/bandit.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+      <!-- <div id="aboutStuffOnRight">
+        <div id="copyright">
+          <div id="byMe" style="text-align:center; font-size:150%; font-style:italic;">
+            Work-in-Progress by <a href="mailto:bradflyon@gmail.com">Brad Lyon</a>
+          </div>
+          <div id="aFewNotes">
+          A few notes are <a class='notes' target="_blank" href="">here</a>
+          </div>
+        </div>
+        
+      </div> -->
+    <div id="topBar">      
+      
+
+      <div id="titleAndSubtitle">
+        <div id="theTitle">
+          Bayesian Bandit Explorer
+        </div>
+        <div id="subTitle">
+          This tool lets you watch the performance of <a href="http://en.wikipedia.org/wiki/Thompson_sampling" target="_blank">Thompson Sampling</a> for solving the <a href="http://en.wikipedia.org/wiki/Multi-armed_bandit" target="_blank">Multi-Armed Bandit Problem</a>:
+         </br>
+          <span id="problemStatement">Play N slot machines ("one-armed bandits"), each with an unknown probability of winning</br></span>
+        </div>
+        <div id="subsubTitle">
+          Inspired by <a href="http://tdunning.blogspot.com/2012/02/bayesian-bandits.html" target="_blank">Ted Dunning's blog</a> and Cam Davidson-Pilon's <a target="_blank" href="http://camdp.com/blogs/multi-armed-bandits">Bayesian Methods for Hackers</a>
+        </div>
+      </div>
+      
+      <div id="aboutStuffOnRight">
+        <div id="copyright">
+            <div id="aFewNotes">
+            A few notes are <a class='notes' target="_blank" href="http://www.nowherenearithaca.com/2013/07/exploring-bayesian-bandits-online-tool.html">here</a>
+            </div>        
+
+          <div id="byMe">
+            <!-- Work-in-Progress by <a href="mailto:bradflyon@gmail.com">Brad Lyon</a> -->
+            <a target="_blank" 
+                href="http://www.nowherenearithaca.com/2014/02/a-summary-of-some-of-my-visualizations.html">B.F. Lyon Visualizations</a>
+
+          </div>
+
+
+          </div>        
+      </div>     
+      
+      
+      <div id="dividerAtTop"></div>
+    </div>
+    
+    <div id="bottomPart">    
+
+    
+    <div id="pickNumbersArea">
+        <table id="pickNumbersTable" style="text-align:center;" cellpadding="2" cellspacing="2">
+         <tr>
+           <td>
+                  <input type="submit" value="New Random Values" id="newRandomValues"/> 
+           </td>
+            <td>Bandit 1</td>
+            <td>Bandit 2</td>
+            <td>Bandit 3</td>
+            <td>Bandit 4</td>
+            <td>
+                  <input type="submit" value="Start Simulation" id="start"/> 
+             </td>
+          </tr>
+         <tr>     
+           <td style="font-size:75%;">Probability of Success</td>
+          <td>      
+            <input type="text" min='0' max='1'  diff="0.01" class='inputNumber decimal' size="4" id="inputBandit_1" rawIndex='1'/>
+          </td>        
+          <td>      
+            <input type="text" min='0' max='1'  diff="0.01" class='inputNumber decimal' size="4" id="inputBandit_2" rawIndex='2'/>
+          </td>        
+          <td>      
+            <input type="text" min='0' max='1'  diff="0.01" class='inputNumber decimal' size="4" id="inputBandit_3" rawIndex='3'/>
+          </td>        
+          <td>      
+            <input type="text" min='0' max='1'  diff="0.01" class='inputNumber decimal' size="4" id="inputBandit_4" rawIndex='4'/>
+          </td>        
+          <td>
+            <span id="theButtons">              
+              <input type="submit" value="Stop" style="visibility:hidden;" id="stop"/> 
+              <!-- <input type="submit" value="Stop asjdhasjd"  id="spacer"/>  -->
+              <input type="submit" value="&nbsp;Pause&nbsp;&nbsp;" style="visibility:hidden;" id="pause"/> 
+              <input type="submit" value="Resume" style="display:none;" id="resume"/> 
+            </span>      
+          </td>
+        </tr>
+        </table>
+      </div>
+    
+    
+    
+      <div id="debugArea" title=" "></div>
+      <div id="outputRegion">
+      </div>
+      
+    </div>  
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>        
+        <script src="js/vendor/jquery-ui-1.10.2.custom.min.js"></script>         
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/jstat.js"></script>
+        <script src="js/banditcore.js"></script>
+        <script src="js/renderbandits.js"></script>
+        <script type='text/javascript' src='js/vendor/jquery.numeric.js'></script>
+        <script src="js/vendor/jquery.color.js"></script>
+        <script src="js/vendor/jquery-migrate.js"></script>
+        <script type='text/javascript' src='js/vendor/fastclick.js'></script>
+
+        <script src="js/vendor/d3.v3.js"></script>
+
+        <script src="js/vendor/mersennetwister.js"></script>
+
+
+      <script>
+        
+        var runBandit;
+        var renderBandits;
+        var currentlySelectedInput;
+        var currentLineSelected;
+        var lastLineMouseX;
+        
+        var mersenneTwister = new MersenneTwister();
+
+        
+          var resizeDivs = function() {
+
+
+            var theHeight = $('#titleAndSubtitle').height();
+            var theGap=2;
+            
+            
+            var theLowerDivs = ["#bottomPart"];
+            var topBarBottom = $('#topBar').position().top + $('#topBar').height();
+            
+            //onsole.log($('#topBar').css('top') + ", " + $('#topBar').position().top + ", " + $('#topBar').height());
+            
+            theLowerDivs.forEach(function(s) {
+              $(s).css('top',topBarBottom); 
+            });
+            
+            $('#aboutDetails').css('top',topBarBottom);
+            
+            //alert($('#exploreConvergence_decreaseIteration').width());
+            //$('#exploreConvergence_Slider').css("left",$('#exploreConvergence_decreaseIteration').css("width"));
+            
+
+            //onsole.log($('#topBar').css('top') + ", " + $('#topBar').position().top + ", " + $('#topBar').height());
+           
+          }
+        
+        
+        
+        $(document).ready(function() {
+
+          $(document).tooltip();
+          
+            window.addEventListener('load', function() {
+                new FastClick(document.body);
+            }, false);          
+
+          
+        resizeDivs();
+        
+
+        [1,2,3,4].forEach(function (i) {
+          
+          $('#inputBandit_' + i).val(mersenneTwister.random().toFixed(2));
+          
+        });
+
+
+        function updateBanditActualProbability(banditIndex,val) {
+          
+          //console.log("Set bandit " + banditIndex + " to " + val);
+          
+          var opts={cmd:"updateParameters",banditIndex:banditIndex, val:val};
+          
+          var rawIndex = parseFloat(banditIndex) + 1;
+          //update inputs
+          
+          //console.log($("#inputBandit_" + rawIndex));
+          
+          val = parseFloat(val); //.toFixed(2);
+          
+          $("#inputBandit_" + rawIndex).val(val);
+          var selector = "#raw_" + rawIndex;
+          $(selector).val(val);
+          //console.log(selector + ", " + val);
+          //console.log($(selector).val());
+          //$("#raw_" + rawIndex).val(val);
+          //var selector = ".runningProbability[rawIndex='" + rawIndex + "']";
+          //$(selector).val(val);
+          //console.log($(selector).val());
+          //console.log(banditIndex + ",  " + val);
+          
+          //console.log("Set bandit " + banditIndex + " to " + val);
+          //console.log(opts);
+          if (runBandit) {
+            runBandit.postMessage(opts);
+            //console.log("Did Set bandit " + banditIndex + " to " + val);
+          }
+          
+        };
+        
+        var theThingToCall = {};
+        theThingToCall.updateBanditActualProbability = updateBanditActualProbability;
+
+        renderBandits = new RenderBandits({MainDivID:'#outputRegion', caller:theThingToCall});
+
+        function stopAnyBanditsRunning() {
+          if (runBandit) {
+           opts = {cmd:'stop'};
+           runBandit.postMessage(opts);   
+           runBandit = null;
+          }
+        };
+        
+        function pauseBandits() {
+          
+          if (runBandit) {            
+            opts = {cmd:'pause'};
+            runBandit.postMessage(opts);   
+          }
+          
+        };
+        function resumeBandits() {
+          
+          if (runBandit) {            
+            opts = {cmd:'resume'};
+            runBandit.postMessage(opts);   
+          }
+          
+        };
+        
+        function runComplete() {
+          $('#pause, #stop').css("visibility","hidden"); 
+          $('#resume').hide(); 
+        }
+        function startBandits(initialProbabilities) {  
+
+         stopAnyBanditsRunning();
+
+          //$('#debugArea').html("").fadeIn();
+          //$('#debugHitArea').html("").fadeIn();
+
+          renderBandits.isInitialized = false;
+
+          runBandit = new Worker('js/runbandits.js');
+        
+          runBandit.onmessage = function(e) {
+            var data = e.data;          
+            var now = new Date();
+            var dateString = "";
+            switch (data.message) {      
+              
+              case 'done':
+  
+                runComplete();            
+                break;                   
+              case 'update':
+                  var stats = data.stats;
+                  var now = new Date();
+                  //console.log(data.theBandits);
+                  var s = "";
+                  data.theBandits.forEach(function(b) {
+                      s += "</br>" + b.stats.probabilityHistory[b.stats.probabilityHistory.length-1].probability + 
+                            ": " + b.currentDistributionParameters.alpha + 
+                            ", " + b.currentDistributionParameters.beta;
+                  });
+                  //console.log(s);
+                  
+                  //console.log(data);
+                  renderBandits.update({theBandits:data.theBandits, stats:stats, randomNumbersForPull:data.randomNumbersForPull});
+                  
+                  var sTitle = "This is the sum over all pulls of the difference between the best bandit's probability of success and the bandit actually chosen.  Smaller is better, but the algorithm may explore other bandits at the risk of increasing regret in the hopes of finding a 'better' bandit.  This is especially true when the simulation has just started, as it has no information on any of the bandits.";
+                  $('#debugArea').attr("title",sTitle);
+                  $('#debugArea').html('Cumulative Regret: ' +  stats.regretSoFar.toFixed(1) + " after " + stats.pullsSoFar + " pulls (minimum regret is 0)");// + ", Regret/logN: " + stats.regretSoFar/(Math.log(stats.pullsSoFar)));
+                  //if (now.getTime() - lastWrite.getTime()>500) {
+                    // $('#debugArea').html(stats.whichPull + 
+                                      // "(" + Math.log(stats.whichPull).toFixed(1) + ")" + ": " + stats.regretSoFar.toFixed(2) + s);                                                                       
+                    // lastWrite = now;
+                  //}
+              break;
+            }
+          };
+        
+         opts = {cmd:'start', initialProbabilities:initialProbabilities,
+                    currentUpdateInterval_ms:100,
+                    maxPulls:150000
+                    };
+                    
+         lastWrite = new Date();
+         isRunning = true;
+           
+           
+          runBandit.postMessage(opts);   
+         };
+
+
+          
+          $('#spacer').button();
+
+          $('#newRandomValues').button().click(function() {
+            var inputs = [];
+            [1,2,3,4].forEach(function(i) {
+
+              var val = parseFloat(mersenneTwister.random().toFixed(2));  
+              var currentlySelectedInput = $('#inputBandit_' + i);        
+              currentlySelectedInput.val(val);  
+              
+              //tell the worker, if it's running
+              
+              if (runBandit) {
+              
+                var rawIndex = currentlySelectedInput.attr("rawIndex");
+                var selector = ".runningProbability[rawIndex='" + rawIndex + "']";
+                var banditElement = $(selector);
+                var banditIndex = banditElement.attr("banditIndex");
+                banditElement.val(val);  
+                updateBanditActualProbability(banditIndex,val);
+                
+              }
+            });
+          });
+          
+          // $('#startRandom').button().click(function() {
+            // $('#stop, #pause').css("visibility","visible");
+            // $('#pause').show();
+            // $('#resume').hide();
+//             
+            // var inputs = [];
+            // [1,2,3,4].forEach(function(i) {
+// 
+              // var val = parseFloat(Math.random().toFixed(2));              
+              // $('#inputBandit_' + i).val(val);              
+              // inputs.push(val);
+//               
+            // });
+//             
+           // //console.log(inputs);
+           // startBandits(inputs);
+//            
+          // });
+          
+          $('#start').button().click(function() {
+            $('#stop, #pause').css("visibility","visible");
+            $('#pause').show();
+            $('#resume').hide();
+            
+            var inputs = [];
+            [1,2,3,4].forEach(function(i) {
+              var val = parseFloat($('#inputBandit_' + i).val());
+              console.log(val);
+              inputs.push(val);
+            });
+            
+            $('#newRandomValues').css("visibility","visible");
+           //console.log(inputs);
+           startBandits(inputs);
+           
+          });
+          $('#pause').button().click(function() {
+            $('#pause').hide();
+            $('#resume').fadeIn();
+            $('#newRandomValues').css("visibility","hidden");
+           pauseBandits();
+          });
+          
+          $('#resume').button().click(function() {
+            //$('#pause').css("visibility","visible");
+            $('#pause').fadeIn();
+            $('#resume').hide();
+            $('#newRandomValues').css("visibility","visible");
+            resumeBandits();
+          });
+          
+          
+          
+          $('#stop').button().click(function() {
+            $('#stop, #pause').css("visibility","hidden");
+            $('#resume').hide();
+            $('#newRandomValues').css("visibility","visible");
+            stopAnyBanditsRunning();
+          });
+          
+          var testBanditManager = new gBanditManager([0.6,0.3,0.9]);
+          
+          var i;
+          for (i=0;i<100;i++) {
+            testBanditManager.doPull(Math);
+          };          
+
+          console.log(Math.log(testBanditManager.statsForEachPull.length));
+          console.log(testBanditManager.getLatestAverageRegret());
+          //console.log(testBanditManager);
+
+
+          // Numeric only control handler
+          jQuery.fn.ForceNumericOnly =
+          function()
+          {
+              return this.each(function()
+              {
+                  $(this).keydown(function(e)
+                  {
+                      var key = e.charCode || e.keyCode || 0;
+                      // allow backspace, tab, delete, arrows, numbers and keypad numbers ONLY
+                      // home, end, period, and numpad decimal
+                      return (
+                          key == 8 || 
+                          key == 9 ||
+                          key == 46 ||
+                          key == 110 ||
+                          key == 190 ||
+                          (key >= 35 && key <= 40) ||
+                          (key >= 48 && key <= 57) ||
+                          (key >= 96 && key <= 105));
+                  });
+              });
+          };
+          $(".ignoredecimal").ForceNumericOnly();
+          $(".ignoredecimal").numeric({ decimal: true, negative: false }, 
+                                              function() { alert("Decimals only (value is " + this.val() + ")"); 
+                                                          //bfl this.value = ""; 
+                                                          this.focus(); });
+
+
+
+            $('body').on("mousedown", 'input.inputNumber', function(event) {
+              currentlySelectedInput = $(this);
+              console.log("Set current to " + currentlySelectedInput.val());
+              lastMouseX = event.pageX;
+              lastMouseY = event.pageY;
+            });
+    
+            $('body').on("mouseup", function() {
+              //console.log("Setting current to null");
+              currentlySelectedInput = null;
+              renderBandits.currentLineSelected = null;
+              d3.selectAll(".actualProbabilityLine").classed("lineActive",false); 
+            });
+
+            $('body').on("mousedown", '.lineSelected', function(event) {
+              
+              currentLineSelected = $(this);
+              lastLineMouseX = event.pageX;
+              
+            });
+            
+            $('body').on("mouseup", '.lineSelected', function(event) {
+              
+              currentLineSelected = null;
+              
+            });
+
+
+
+            $('body').mousemove(function(event) {
+
+
+            if (currentLineSelected) {
+
+
+                  var thisLineMouseX = event.pageX;             
+                  var diffX = (thisLineMouseX - lastLineMouseX);         
+                  
+                  
+                  
+                  
+                  lastLineMouseX = event.pageX;
+                  
+            }
+
+  
+          if (currentlySelectedInput) {
+       
+       
+              //console.log(currentlySelectedInput);
+              console.log(currentlySelectedInput.val());
+
+              var thisMouseX = event.pageX;
+              var thisMouseY = event.pageY;
+          
+              //var diff = -(thisMouseY - lastMouseY);
+              var diff = (thisMouseX - lastMouseX);
+          
+          
+              var s = currentlySelectedInput.val();
+              if (s.trim().length<=0) {
+                s=0; 
+              }
+              
+              var currentVal = parseFloat(s); //currentlySelectedInput.val());          
+              
+          
+              var diffAmount = currentlySelectedInput.attr("diff");
+              
+              if ( (diffAmount) && (diffAmount.length>0)) {
+              diffAmount = parseFloat(diffAmount);
+              }
+              else {
+              diffAmount=1;
+              }
+        
+              currentVal += diff * diffAmount;
+        
+              var theMin = currentlySelectedInput.attr("min");
+              if ( (theMin) && (theMin.length>0)) {
+                theMin = parseFloat(theMin); //iffAmount);
+                if (currentVal < theMin) {
+                  console.log("Below min, setting to " + theMin);
+                  currentVal = theMin;
+                }
+              }
+              var theMax = currentlySelectedInput.attr("max");
+              if ( (theMax) && (theMax.length>0)) {
+                theMax = parseFloat(theMax); //iffAmount);
+                if (currentVal > theMax) {
+                  //console.log("Below min, setting to " + theMin);
+                  currentVal = theMax;
+                }
+              }
+              
+              var theVal = currentVal.toFixed(2);
+
+
+              currentlySelectedInput.val(theVal);
+              
+              console.log("move, val is " + theVal);
+              
+              if (currentlySelectedInput.hasClass("runningProbability")) {
+                var banditIndex = currentlySelectedInput.attr("banditIndex");
+                var rawIndex = currentlySelectedInput.attr("rawIndex");
+                var inputIndex = "inputBandit_" + rawIndex;
+                $('#' + inputIndex).val(theVal);
+                updateBanditActualProbability(banditIndex,theVal);
+              }
+              else {
+                var rawIndex = currentlySelectedInput.attr("rawIndex");
+                var selector = ".runningProbability[rawIndex='" + rawIndex + "']";
+                var banditElement = $(selector);
+                var banditIndex = banditElement.attr("banditIndex");
+                banditElement.val(theVal);  
+                updateBanditActualProbability(banditIndex,theVal);
+              }
+            }
+  
+            lastMouseX = event.pageX;
+            lastMouseY = event.pageY;
+
+    });
+    
+          $('body').on("keypress keyup onchange change blur",'input.inputNumber', function(event){
+            
+              console.log(event);
+            
+              var keycode = (event.keyCode ? event.keyCode : event.which);
+              //if ((keycode == '13') || (keycode == '9'))
+              //{
+                
+               // console.log("keypress...");
+                
+                //event.preventDefault();
+                //return;
+              var currentlySelectedInput = $(this);
+              var s = currentlySelectedInput.val().trim();
+              if (s.trim().length<=0) {
+                s=0; 
+              }                           
+              
+              if (s==="01") {
+               s=1; 
+              }
+              if (s==="0.") {
+                if ((event.type==="blur") || (event.type==="focusout")) {
+                  s = 0;
+                }
+                else {
+                  return; 
+               }
+              }
+              //console.log("keypress, etc., val is " + currentlySelectedInput.val());
+              
+              //var currentVal = parseFloat(s); //currentlySelectedInput.val());
+              var currentVal = s; //currentlySelectedInput.val();
+                
+              var theMin = currentlySelectedInput.attr("min");
+              if ( (theMin) && (theMin.length>0)) {
+                theMin = parseFloat(theMin); //iffAmount);
+                if (currentVal < theMin) {
+                  console.log("Below min, setting to " + theMin);
+                  currentVal = theMin;
+                }
+              }
+              var theMax = currentlySelectedInput.attr("max");
+              if ( (theMax) && (theMax.length>0)) {
+                theMax = parseFloat(theMax); //iffAmount);
+                if (currentVal > theMax) {
+                  //console.log("Below min, setting to " + theMin);
+                  currentVal = theMax;
+                }
+              }                
+
+              var theVal = currentVal;//.toFixed(2);
+              currentlySelectedInput.val(theVal);
+              if (currentlySelectedInput.hasClass("runningProbability")) {
+                var banditIndex = currentlySelectedInput.attr("banditIndex");
+                var rawIndex = currentlySelectedInput.attr("rawIndex");
+                var inputIndex = "inputBandit_" + rawIndex;
+                $('#' + inputIndex).val(theVal);
+                updateBanditActualProbability(banditIndex,theVal);
+              }              
+              else {
+                var rawIndex = currentlySelectedInput.attr("rawIndex");
+                var selector = ".runningProbability[rawIndex='" + rawIndex + "']";
+                var banditElement = $(selector);
+                var banditIndex = banditElement.attr("banditIndex");
+                banditElement.val(theVal);  
+                updateBanditActualProbability(banditIndex,theVal);
+              }
+              
+            });
+
+          
+        });
+        
+      </script>
+
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-42107171-1', 'googledrive.com');
+        ga('send', 'pageview');
+      
+      </script>
+    </body>
+</html>

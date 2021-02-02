@@ -1,0 +1,835 @@
+body {
+
+	font-size: 62.5%; /* based on http://kyleschaeffer.com/user-experience/css-font-size-em-vs-px-vs-pt-vs/ */
+	font-family: Verdana, Arial, sans-serif;
+	height: 100%;
+	width:100%;
+	margin-left:0;
+	margin-right:0;
+	padding-right:0;
+	padding-left:0;
+}
+
+.lineActive {	
+    stroke-width: 6px;
+}
+
+.area {
+    fill:none; 
+    stroke-width: 2px;
+}
+
+.subInfo {
+	font-size:75%;
+	font-style: italic;
+	font-weight: normal;
+}
+
+#dividerAtTop {
+	width:100%;
+	height:2px;
+	margin-top:6px;
+	margin-bottom:4px;
+	background:#0000FF;
+}
+
+#theButtons {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+#problemStatement {
+	padding-top:12px;
+	padding-bottom:12px;
+	font-style: italic;
+	font-size:90%;
+}
+
+#bottomPart {
+			text-align:center;
+
+}
+#pickNumbersArea {
+		margin-top:8px;
+	  width:100%;
+		text-align:center;
+		margin-left:auto;
+		margin-right:auto;
+}
+#pickNumbersTable {
+		text-align:center;
+		margin-left:auto;
+		margin-right:auto;
+		margin-bottom:9px;
+		margin-top:4px;
+}
+
+.outputData  {
+	border-radius:4px;
+}
+	
+
+#pickNumbersTable td {
+	padding-bottom:0px;
+	padding-top:0px;
+	margin-bottom:4px;
+}
+#theButtons {
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+}
+#outputRegion {
+	position:relative;
+	width:90%;
+	margin-left:5%;	
+};
+#outputGraphs {
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+  text-align:center;
+  width:100%;
+}
+td input {
+	text-align:center;
+}
+input {
+	text-align:center;
+}
+
+td {
+		text-align:center;
+}
+
+#outputGraphs {
+	border:1px solid black;
+}
+#outputGraphs tr {
+	border-bottom:1px solid black;
+	border-right:1px solid black;
+	margin:4px;
+}
+#outputGraphs td, #outputGraphs th {
+	border-right:1px solid black;
+	padding:4px;
+}
+
+/**********************************/
+/* The stuff in here in brackets based on http://bl.ocks.org/rkirsling/5001347 */
+
+svg {
+  background-color: #FFF;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+svg:not(.active):not(.ctrl) {
+  cursor: crosshair;
+}
+
+/*path.link {
+  fill: none;
+  stroke: #000;
+  stroke-width: 4px;
+  cursor: default;
+}*/
+
+svg:not(.active):not(.ctrl) path.link {
+  cursor: pointer;
+}
+
+path.link.selected {
+  stroke-dasharray: 10,2;
+}
+
+path.link.dragline {
+  pointer-events: none;
+}
+
+path.link.hidden {
+  stroke-width: 0;
+}
+
+circle.node {
+  stroke-width: 1.5px;
+  cursor: pointer;
+}
+
+circle.node.reflexive {
+  stroke: #000 !important;
+  stroke-width: 2.5px;
+}
+
+text {
+  font: 12px sans-serif;
+  pointer-events: none;
+}
+
+text.id {
+  text-anchor: middle;
+  font-weight: bold;
+}
+
+/**********************************/
+
+#btnCancelCurrent {
+	display:inline-block;
+}
+
+.tableIgnoredWords {
+	ifloat:left;
+	font-size:0.75em;
+	padding:5px;
+	
+}
+
+.tableIgnoredWords th {
+	font-style:italic;
+}
+
+
+.tableIgnoredWords {
+	border:1px solid black;
+	margin-left:10px;
+	iposition:absolute;
+	ileft:15px;
+	itop:25px;
+	margin-top:15px;
+	margin-right:5px;
+}
+.tableIgnoredWords td {
+	border-left:1px solid black;
+	border-right:1px solid black;
+}
+
+.ignoredWordsA, .ignoredWordsB {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#dunningInfo {
+	font-size:0.75em;
+}
+
+.ignoredWordsA td, .ignoredWordsB td {
+	border:none;
+	text-align:center;
+}
+
+.ignoredWordsA  td:hover {
+	background:#00DD00;	
+} 
+.ignoredWordsB  td:hover {
+	background:#00DD00;	
+} 
+
+.wordA:hover, .wordB:hover {
+	background:#EE0000;	
+}
+
+.tableIgnoredWords  td {
+	text-align:center;
+}
+
+#ignoredWords {
+	float:left;
+}
+#contents {
+	float:left;
+	display:inline-block;
+}
+
+#ignoredWords_A, #ignoredWords_B {
+	display:inline-block;	
+}
+
+#spinner, .spinner {
+	background:white;
+	opacity:1;
+	position:relative;
+	iborder:1px solid black;
+}
+
+#fileInput {
+	ifont-size:1.25em;
+}
+#processingUpDateInfo {
+		clear:both;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+		width:100%;
+		position:relative;
+}
+#processStatus {
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+		font-style:italic;
+}
+
+
+
+.bigramTable {
+		margin-left:auto;
+		margin-right:auto;
+		font-size:0.9em;
+}
+
+.hasToolTip {
+	color:#2B60DE;
+}
+
+div[title], span[title], td[title], th[title] {
+	color:#2B60DE;	
+}
+
+.bigramTable  tr {
+	border-bottom:1px solid black;
+	padding:1px;
+}
+
+.bigramTable  td, .bigramTable  th {
+	padding:1px;
+	text-align:center;
+	padding-left:3px;
+	padding-right:3px;
+	
+	border-left:1px solid black;
+	border-right:1px solid black;
+	
+}
+
+.contingencyTable {
+	width:100%;
+	iborder:1px solid black;
+	font-size:0.75em;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.contingencyTable td {
+	text-align:center;
+	border:none;
+	padding:3px;
+	margin-right:3px;
+}
+
+.contingencyTable tr {
+	border:none;
+}
+.contingencyTable td {
+	padding:2px;
+}
+.contingencyTable td:hover {
+	background:#CCCCCC;
+}
+
+.contingencyTableExperiment td {
+	font-size:0.75em;
+	text-align:center;
+	border:none;
+	padding:3px;
+	margin-right:3px;	
+}
+.contingencyTableExperiment input {
+	text-align:center;	
+}
+#pickFileLabel {
+	text-align:center;
+	font-style:italic;
+}
+
+#presetArea {
+	float:right;
+}
+
+#inputFileArea {
+	imargin-top:20px;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:3px;
+	width:80%;
+	font-size:1em;
+	iborder: 2px solid blue;
+	border-radius:4px;	
+}
+
+#pickFile {
+	margin: 0 auto;
+	margin-top:15px;
+	margin-right:auto;
+	width:95%;
+	iborder: 2px solid blue;
+	border-radius:4px;	
+}
+
+#presetFilesLabel {
+	font-weight: bold;
+	font-style:italic;
+	font-size:0.75em;
+	
+}
+
+#fileDiv {
+	position:relative;
+	text-align:center;
+	float:left;
+	/*margin-left:auto;
+	margin-right:auto;*/}
+
+#outputArea {
+	border-top:2px solid blue;
+	iborder: 1px solid red;
+	position:relative;
+	clear:both;
+}
+
+#dampingFactorSlider {
+	margin-top:5px;
+	width:100%;
+}
+#dampingFactor {
+	background-color:rgba(255,255,255,1);
+	color:#2B60DE;
+}
+
+#bottomPart {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom:0;
+	width: 100%;	
+	iborder:1px solid black;
+	font-size:1.5em;
+}
+#topBar {
+	iposition: absolute;
+	itop:55px;
+	left: 0;
+	width: 100%;
+	right:0;
+	color: black;
+	margin-left: 0;
+	margin-right: 0;
+	text-align: center;
+	iborder:1px solid blue;
+}
+
+
+#titleAndSubtitle {
+	position:relative;
+	iborder:1px solid red;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	imargin-left: 325px; /* for the adsense thing - testing */
+	imargin-right: 16%;
+}
+
+#theTitle {
+	iborder:1px solid green;
+	text-align:center;
+	padding-top: 5px;
+	margin-left:auto;
+	margin-right:auto;
+	font-weight: bold;
+	color: black;
+	font-size: 2.5em;
+}
+
+#subTitle {
+	iborder:1px solid black;
+	font-size: 1.5em;
+	ifont-style:italic;
+	margin-left: auto;
+	margin-right:auto;
+}
+#subsubTitle {
+	font-size: 1em;
+	ifont-style:italic;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+
+#tweet {
+width: 25px;
+height: 25px;
+background-size:cover;
+background:url('../img/twitter-bird-light-bgs.png') no-repeat;	
+}
+
+#spacer {
+	height:5px;
+}
+.instructions {
+	font-size:80%;
+	font-style:italic;
+}
+#leftTopSide {
+	ifont-style:italic;
+	float:left;
+	position: relative;
+	margin-left: 15px;
+	margin-top: 5px;
+	font-size:150%;
+}
+
+#aboutStuffOnRight {
+	idisplay:none;
+	ifloat: right;
+	position: absolute;
+	right:15px;
+	top:0;
+	font-size: 1em;
+	imargin-right: 15px;
+	margin-top: 5px;
+}
+
+@media (max-width:600px) {
+	#aboutStuffOnRight {
+		position: relative;
+		right:0;
+	}
+}
+
+
+#aFewNotes {
+	ifont-size:1.25em;
+}
+
+#about, #aboutNotes {
+	text-decoration: underline;
+	font-size: 1.5em;
+}
+
+#aboutNotes, #byMe {
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+a#aboutNotes {
+	display:block;
+}
+#aboutDetails {
+	display:none;
+}
+
+#about:hover, #aboutNotes:hover {
+	color: #AD9557;
+}
+
+
+.sharing-icons
+{
+	display:inline-block;
+	overflow:hidden;
+    text-indent:9999px;
+    white-space:nowrap;
+    margin-left:3px;
+    margin-right:3px;
+    opacity:.3;
+   	-webkit-transition:opacity .3s;
+   	-moz-transition:opacity .3s;
+   	-ms-transition:opacity .3s;
+   	-o-transition:opacity .3s;
+   	transition:opacity .3s;
+}
+
+
+.sharing-icons:hover
+{
+	opacity:0.8;
+   	-webkit-transition:opacity .3s;
+   	-moz-transition:opacity .3s;
+   	-ms-transition:opacity .3s;
+   	-o-transition:opacity .3s;
+   	transition:opacity .3s;
+}
+
+#share-icons {
+	display:none;
+	ipadding-top:3px;
+}
+
+.g-plus {
+width: 35px;
+height: 35px;
+	
+}
+#twitter {
+top:0;
+width: 35px;
+height: 35px;
+background-size:cover;
+background:url('../img/twitter-bird-blue-on-white.png') no-repeat;	
+}
+
+#facebook {
+width: 25px;
+height: 25px;
+background-size:cover;
+background:url('../img/facebook.png') no-repeat;	
+iborder:1px solid rgba(255,0,0,0.4);
+}
+
+#linkedin {
+	display:none;
+	margin:0;
+font-size: 1.5em;
+	opacity:0.8;
+width: 25px;
+height: 25px;
+background:url('../img/favicon.ico') no-repeat;	
+iborder:1px solid rgba(255,0,0,0.4);
+}
+
+
+#titleForGraphContainer {
+	position:absolute;
+	left:0;
+	width:50%;
+	height:50px;
+	
+}
+#graphContainer {
+	position:absolute;
+	width:100%;
+	top:0;
+	left:0;
+	bottom:60%;
+	iborder:2px solid blue;
+	border-radius:2px;
+	z-index:999;
+}
+
+#btnHideShowMatrixStuff {
+	z-index:1000;
+	
+}
+#matrixAndCalculationsArea {
+	position:absolute;
+	width:100%;
+	left:0;
+	bottom:0;
+	top:40%;
+	iborder:2px solid green;
+	border-radius:2px;
+	iz-index:1000; /* on top of graph area */
+}
+
+#dampingPreCoefficient {
+	display:inline;
+}
+
+/*#matrixArea, #danglingMatrixArea {
+	display:inline;
+	float:left;
+}*/
+
+.tablecol1 {
+idisplay:none;
+border-right: 1px solid black;
+}
+.tableHeaderRow {
+	border-bottom: 1px solid black;	
+}
+
+td {
+	padding:5px;
+}
+
+
+.hasToolTip {
+	color:#2B60DE;
+}
+
+.highlighted {
+    iborder: 2px solid black;
+    background-color:#DDFFDD;
+    iopacity:0.05;
+}
+.highlightedPrev {
+    iborder-right: 2px solid black;
+    background-color:#FFFFFF;
+    opacity:1;
+}
+
+td.leftBracket { 
+		width: 0.8ex;
+		font-size: 50%;
+		border: solid 3px black;
+		border-right: none;
+	}
+td.rightBracket { 
+		width: 0.8ex; 
+		font-size: 50%;
+		border: solid 3px black;
+		border-left: none;
+	}
+
+td.leftVert { 
+		width: 5px;
+		font-size: 50%;
+		border: solid 1px black;
+		border-right: none;
+		border-top: none;
+		border-bottom: none;
+	}
+td.rightVert { 
+		width: 5px; 
+		font-size: 50%;
+		border: solid 1px black;
+		border-left: none;
+		border-top: none;
+		border-bottom: none;
+	}
+
+/*table tr {
+white-space:nowrap;
+}*/
+
+.googleEquation {
+	font-size:150%;
+}
+
+.mainEigenvectorequation {
+	font-size:175%;
+}
+
+.aMatrix, .aVector {
+		display:inline;
+		font-weight: bold;
+		ifont-size:150%;
+}
+#matrixArea, #bigMatrixTable {
+	width:90%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#hyperlinkMatrix, #danglingNodeMatrix, #unitMatrix {
+	
+	border:solid 1px black;
+	
+}
+.matrixPlus, .dampingCoefficients {
+   font-size:400%;
+}
+
+line.link, path.link {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 4px;
+  cursor: default;
+}
+
+
+.linkDanglingNode, path.linkDanglingNode {
+	display:none;
+  fill: none;
+  stroke: #000000;
+  stroke:#00FF00;
+  stroke-width: 2px;
+  cursor: default;
+}	
+.linkOneMatrix, path.linkOneMatrix {
+	display:none;
+  fill: none;
+  stroke: #000000;
+  stroke:#0000FF;
+  stroke-width: 2px;
+  cursor: default;
+}	
+
+
+marker {
+	border:1px solid green;
+	ifill:yellow;
+}
+
+marker#selected {
+  fill: #00FF00;
+}
+
+marker#dangling {
+		fill:#00FF00;
+}
+marker#allones {
+		fill:#00FF00;
+}
+
+marker#licensing {
+  fill: green;
+}
+
+path.link.licensing {
+  stroke: green;
+}
+
+path.link.resolved {
+  stroke-dasharray: 0,2 1;
+}
+
+.circle, circle {
+  fill: #ccc;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+text {
+  ignorefont: 10px sans-serif;
+  pointer-events: none;
+}
+
+text.shadow {
+  stroke: #fff;
+  stroke-width: 1px;
+  stroke-opacity: .8;
+}
+
+#sorryIPhoneDiv {
+	position:absolute;	
+	top:0;
+	left:0;
+	opacity:80%;
+	background:rgba(255,255,255,0.95);
+	font-size:200%;
+	font-weight:bold;
+	height:100%;
+	width:100%;
+	z-index:100000;
+		
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+  .ipad-portrait { color: red; } /* your css rules for ipad portrait */
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) {
+  .ipad-landscape { color: blue; } /* your css rules for ipad landscape */
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) {
+
+
+	#desktopInstructions {
+		display:none;
+	}
+
+#btnHideShowMatrixStuff {
+	margin-top:25px;
+}
+
+	/*#topBar {
+		border:1px solid black;
+	}*/
+	
+}
